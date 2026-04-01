@@ -22,22 +22,23 @@ template <int I>
 struct GamePort {
   enum { pin = -1 };
 };
+// GAMEPORT 1
 
 // Analog: Button #1
 // Digital (e.g. SW3D): Clock
 template <>
 struct GamePort<2> {
-  enum { pin = 10 };
+  enum { pin = 2 };
 };
 
-// Analog: Joystick1 X-Axis
+// Analog: Joystick1 X-Axis 
 // Digital (e.g. SW3D): Trigger
 template <>
 struct GamePort<3> {
-  enum { pin = A0 };
+  enum { pin = A6 };
 };
 
-// Analog: Joystick1 Y-Axis
+// Analog: Joystick1 Y-Axis 
 template <>
 struct GamePort<6> {
   enum { pin = A7 };
@@ -47,32 +48,32 @@ struct GamePort<6> {
 // Digital (e.g. SW3D): Data 0
 template <>
 struct GamePort<7> {
-  enum { pin = 8 };
+  enum { pin = 3 };
 };
 
 // Analog: Button #3
 // Digital (e.g. SW3D): Data 1
 template <>
 struct GamePort<10> {
-  enum { pin = 16 };
+  enum { pin = 5 };
 };
 
-// Analog: Joystick2 X-Axis
+// Analog: Joystick2 X-Axis 
 template <>
 struct GamePort<11> {
-  enum { pin = A1 };
+  enum { pin = A8 };
 };
 
 // Analog: Midi OUT
 template <>
 struct GamePort<12> {
-  enum { pin = 5 };
+  enum { pin = 1 }; // TX
 };
 
-// Analog: Joystick2 Y-Axis
+// Analog: Joystick2 Y-Axis 
 template <>
 struct GamePort<13> {
-  enum { pin = A6 };
+  enum { pin = A9 };
 };
 
 // Analog: Button #4
@@ -85,5 +86,59 @@ struct GamePort<14> {
 // Analog: Midi IN
 template <>
 struct GamePort<15> {
-  enum { pin = 9 };
+  enum { pin = 0 }; // RX
+};
+// GAMEPORT 2
+
+// Analog: Button #1
+// Digital (e.g. SW3D): Clock
+template <>
+struct GamePort<17> {
+  enum { pin = 15 };
+};
+
+// Analog: Joystick1 X-Axis 
+// Digital (e.g. SW3D): Trigger
+template <>
+struct GamePort<18> {
+  enum { pin = A3 };
+};
+
+// Analog: Joystick1 Y-Axis 
+template <>
+struct GamePort<21> {
+  enum { pin = A2 };
+};
+
+// Analog: Button #2
+// Digital (e.g. SW3D): Data 0
+template <>
+struct GamePort<22> {
+  enum { pin = 14 };
+};
+
+// Analog: Button #3
+// Digital (e.g. SW3D): Data 1
+template <>
+struct GamePort<25> {
+  enum { pin = 16 };
+};
+
+// Analog: Joystick2 X-Axis 
+template <>
+struct GamePort<26> {
+  enum { pin = A1 };
+};
+
+// Analog: Joystick2 Y-Axis 
+template <>
+struct GamePort<28> {
+  enum { pin = A0 };
+};
+
+// Analog: Button #4
+// Digital (e.g. SW3D): Data 2
+template <>
+struct GamePort<29> {
+  enum { pin = 10 };
 };

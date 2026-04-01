@@ -37,6 +37,15 @@ public:
         return m_axis3.get();
       case 3:
         return m_axis4.get();
+      // added 5 through 8 for GamePort 2
+      case 4:
+        return m_axis5.get();
+      case 5:
+        return m_axis6.get();
+      case 6:
+        return m_axis7.get();
+      case 7:
+        return m_axis8.get();  
       default:
         return 0u;
     }
@@ -57,6 +66,15 @@ public:
         return m_axis3.getAbsolute();
       case 3:
         return m_axis4.getAbsolute();
+      // added 5 through 8 for Gameport 2
+      case 4:
+        return m_axis5.getAbsolute();
+      case 5:
+        return m_axis6.getAbsolute();
+      case 6:
+        return m_axis7.getAbsolute();
+      case 7:
+        return m_axis8.getAbsolute();  
       default:
         return 0u;
     }
@@ -66,8 +84,8 @@ public:
   ///
   /// @returns a byte every bit represents a button
   byte getButtons() {
-    return m_button1.isLow() | m_button2.isLow() << 1 | m_button3.isLow() << 2 | m_button4.isLow() << 3;
-  }
+    return m_button1.isLow() | m_button2.isLow() << 1 | m_button3.isLow() << 2 | m_button4.isLow() << 3 | m_button5.isLow() << 4 | m_button6.isLow() << 5 | m_button7.isLow() << 6 | m_button8.isLow() << 7;
+  } // added 5 through 8 for Gameport 2
 
 private:
   DigitalInput<GamePort<2>::pin> m_button1;
@@ -78,4 +96,13 @@ private:
   AnalogAxis<GamePort<6>::pin> m_axis2;
   AnalogAxis<GamePort<11>::pin> m_axis3;
   AnalogAxis<GamePort<13>::pin> m_axis4;
+  // added 5 through 8 for Gameport 2
+  DigitalInput<GamePort<17>::pin> m_button5;
+  DigitalInput<GamePort<22>::pin> m_button6;
+  DigitalInput<GamePort<25>::pin> m_button7;
+  DigitalInput<GamePort<29>::pin> m_button8;
+  AnalogAxis<GamePort<18>::pin> m_axis5;
+  AnalogAxis<GamePort<21>::pin> m_axis6;
+  AnalogAxis<GamePort<26>::pin> m_axis7;
+  AnalogAxis<GamePort<28>::pin> m_axis8;
 };
