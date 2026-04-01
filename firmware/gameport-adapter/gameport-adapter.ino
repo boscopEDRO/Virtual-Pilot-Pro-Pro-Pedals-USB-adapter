@@ -19,6 +19,8 @@
 
 #include "CHF16CombatStick.h"
 #include "CHFlightstickPro.h"
+#include "CHVirtualPilotPro.h" // New addition by me
+#include "CHProPedals.h" // New addition by me
 #include "GenericJoystick.h"
 #include "GrIP.h"
 #include "Logitech.h"
@@ -26,56 +28,60 @@
 #include "TMDC.h"
 #include "ThrustMaster.h"
 
+#include "CHYokeAndPedal.h" // This driver uses two GamePort connectors
+
 static Joystick *createJoystick() {
 
-  const auto sw1 = DigitalInput<14, true>{};
-  const auto sw2 = DigitalInput<15, true>{};
-  const auto sw3 = DigitalInput<20, true>{};
-  const auto sw4 = DigitalInput<21, true>{};
+  return new CHYokeAndPedal; // Hardcoded driver due to eliminated dip switches
 
-  // Give some time to setup the input
-  delay(1);
+  //const auto sw1 = DigitalInput<14, true>{};
+  //const auto sw2 = DigitalInput<15, true>{};
+  //const auto sw3 = DigitalInput<20, true>{};
+  //const auto sw4 = DigitalInput<21, true>{};
 
-  const auto sw = !sw4 << 3 | !sw3 << 2 | !sw2 << 1 | !sw1;
+  //// Give some time to setup the input
+  //delay(1);
 
-  switch (sw) {
-    case 0b0001:
-      return new GenericJoystick<2, 4>;
-    case 0b0010:
-      return new GenericJoystick<3, 4>;
-    case 0b0011:
-      return new GenericJoystick<4, 4>;
-    case 0b0100:
-      return new CHFlightstickPro;
-    case 0b0101:
-      return new ThrustMaster;
-    case 0b0110:
-      return new CHF16CombatStick;
-    case 0b0111:
-      return new Sidewinder;
-    case 0b1000:
-      return new GrIP;
-    case 0b1001:
-      return new Logitech;
-    case 0b1010:
-      return new TMDC;
-    default:
-      return new GenericJoystick<2, 2>;
+  //const auto sw = !sw4 << 3 | !sw3 << 2 | !sw2 << 1 | !sw1;
+
+  //switch (sw) {
+  //  case 0b0001:
+  //    return new GenericJoystick<2, 4>;
+  //  case 0b0010:
+  //    return new GenericJoystick<3, 4>;
+  //  case 0b0011:
+  //    return new GenericJoystick<4, 4>;
+  //  case 0b0100:
+  //    return new CHFlightstickPro;
+  //  case 0b0101:
+  //    return new ThrustMaster;
+  //  case 0b0110:
+  //    return new CHF16CombatStick;
+  //  case 0b0111:
+  //    return new Sidewinder;
+  //  case 0b1000:
+  //    return new GrIP;
+  //  case 0b1001:
+  //    return new Logitech;
+  //  case 0b1010:
+  //    return new TMDC;
+  //  default:
+  //    return new GenericJoystick<2, 2>;
   }
 }
 
 void setup() {
-  // DEBUG information: Debugging is turned off by default
-  // Comment the "NDEBUG" line in "Utilities.h" to enable logging to the serial monitor
-  initLog();
+    // DEBUG information: Debugging is turned off by default
+    // Comment the "NDEBUG" line in "Utilities.h" to enable logging to the serial monitor
+    initLog();
 }
 
 void loop() {
 
   static auto hidJoystick = [] {
-    HidJoystick hidJoystick;
-    hidJoystick.init(createJoystick());
-    return hidJoystick;
+      HidJoystick hidJoystick;
+      hidJoystick.init(createJoystick());
+      return hidJoystick;
   }();
 
   hidJoystick.update();
