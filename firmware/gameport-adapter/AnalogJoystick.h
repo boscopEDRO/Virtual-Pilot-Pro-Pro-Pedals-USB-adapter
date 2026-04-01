@@ -23,7 +23,7 @@
 /// A common class for all analog joysticks.
 class AnalogJoystick {
 public:
-  /// Gets axis value.
+  /// Gets axis value with center calibration.
   ///
   /// @param[in] id is the axes ID
   /// @returns a value between 0 and 255
@@ -37,6 +37,26 @@ public:
         return m_axis3.get();
       case 3:
         return m_axis4.get();
+      default:
+        return 0u;
+    }
+  }
+
+  /// Gets axis value without calibrated center (AKA Slider).
+  /// Usefull for pedals that springs to rest on 0 position, intead of middle.
+  ///
+  /// @param[in] id is the axes ID
+  /// @returns a value between 0 and 255
+  uint16_t getSlider(int id) {
+    switch (id) {
+      case 0:
+        return m_axis1.getAbsolute();
+      case 1:
+        return m_axis2.getAbsolute();
+      case 2:
+        return m_axis3.getAbsolute();
+      case 3:
+        return m_axis4.getAbsolute();
       default:
         return 0u;
     }

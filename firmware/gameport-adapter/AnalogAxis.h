@@ -58,6 +58,25 @@ public:
     return map(value, m_mid, m_max, 511, 0);
   }
 
+  /// Slider: Gets the axis state ignoring center mapping.
+  /// Usefull for pedals that springs to rest on 0 position, intead of middle.
+  ///
+  /// This function automatically recalculates the outer limits and
+  /// readjusts the position of the joystick.
+  /// @returns a value between 0 and 1023
+  uint16_t getAbsolute() {
+    const auto value = analogRead(ID);
+    if (value < m_min) {
+      m_min = value;
+    } else if (value > m_max) {
+      m_max = value;
+    }
+
+    // Maps the full range.
+    return map(value, m_min, m_max, 1023, 0);
+  }
+
+
 private:
   int m_mid;
   int m_min;
