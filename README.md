@@ -1,5 +1,5 @@
 # Virtual Pilot Pro & Pro Pedals USB Adapter
-
+![Box Art](./boxesimg.png)
 This is a slight modification of [Necroware's GamePort Adapter](https://github.com/necroware/gameport-adapter).<br/>
 For technical information about how it works, please visit the original project page, it is very well documented.
 
