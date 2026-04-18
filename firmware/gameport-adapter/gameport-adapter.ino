@@ -25,7 +25,6 @@
 #include "GrIP.h"
 #include "Logitech.h"
 #include "Sidewinder.h"
-#include "TMDC.h"
 #include "ThrustMaster.h"
 
 #include "CHYokeAndPedal.h" // This driver uses two GamePort connectors
@@ -46,11 +45,11 @@ static Joystick *createJoystick() {
 
   //switch (sw) {
   //  case 0b0001:
-  //    return new GenericJoystick<2, 4>;
+  //    return new GenericJoystick<2,4>;
   //  case 0b0010:
-  //    return new GenericJoystick<3, 4>;
+  //    return new GenericJoystick<3,4>;
   //  case 0b0011:
-  //    return new GenericJoystick<4, 4>;
+  //    return new GenericJoystick<4,4>;
   //  case 0b0100:
   //    return new CHFlightstickPro;
   //  case 0b0101:
@@ -63,11 +62,9 @@ static Joystick *createJoystick() {
   //    return new GrIP;
   //  case 0b1001:
   //    return new Logitech;
-  //  case 0b1010:
-  //    return new TMDC;
   //  default:
-  //    return new GenericJoystick<2, 2>;
-  }
+  //    return new GenericJoystick<2,2>;
+  //}
 }
 
 void setup() {
